@@ -6,7 +6,7 @@ import {
 } from "@mui/icons-material";
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logov2.png";
+import logo from "../../assets/images/logo.png";
 import "./Navbar.scss";
 const Navbar = () => {
   const stylesIcons = {
@@ -30,7 +30,7 @@ const Navbar = () => {
 
           <div className="navbar-links">
             <Link to="/products/1" className="link">
-              <p>Womens</p>
+              <p>Women</p>
             </Link>
             <Link to="/products/2" className="link">
               <p>Mens</p>
@@ -39,7 +39,7 @@ const Navbar = () => {
               <p>Children</p>
             </Link>
             <Link to="/products/4" className="link">
-              <p>Acessories</p>
+              <p>Accessories</p>
             </Link>
             <div className="navbar-links-more">
               <p>More</p>
@@ -54,7 +54,7 @@ const Navbar = () => {
             <Favorite sx={stylesIcons} size="large" />
             <div className="navbar-search-bar">
               <Search size="large" />
-              <input type="text" placeholder="Search products..." />
+              <input type="text" placeholder="Search products..." className="navbar-search-bar-input"/>
             </div>
             <ShoppingCart sx={stylesIcons} size="large" />
           </ul>
