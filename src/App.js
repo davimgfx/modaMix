@@ -1,6 +1,7 @@
 import { Navbar, Footer } from "./components";
 import { Home, Product, Products } from "./pages";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import "./index.css"
 
 const Layout = () => {
   return (
