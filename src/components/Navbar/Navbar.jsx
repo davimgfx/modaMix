@@ -4,11 +4,13 @@ import {
   Search,
   ShoppingCart,
 } from "@mui/icons-material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import "./Navbar.scss";
 const Navbar = () => {
+  const [isOpenModal, setIsOpenModal] = useState(true);
+
   const stylesIcons = {
     border: "1px solid #34435C64",
     padding: "0.5rem",
@@ -41,9 +43,20 @@ const Navbar = () => {
             <Link to="/products/4" className="link">
               <p>Accessories</p>
             </Link>
-            <div className="navbar-links-more">
+            <div
+              className={`navbar-links-more`}
+              onClick={() => setIsOpenModal(!isOpenModal)}>
               <p>More</p>
-              <KeyboardArrowDown />
+              <div className={` ${isOpenModal ? "arrowUp" : "arrowDown"}`}>
+                <KeyboardArrowDown />
+              </div>
+
+              <div className={` ${isOpenModal ? "navbar-link-modal" : "none"}`}>
+                <p>HomePage</p>
+                <p>About</p>
+                <p>Contact</p>
+                <p>Stores</p>
+              </div>
             </div>
           </div>
         </div>
@@ -54,7 +67,11 @@ const Navbar = () => {
             <Favorite sx={stylesIcons} size="large" />
             <div className="navbar-search-bar">
               <Search size="large" />
-              <input type="text" placeholder="Search products..." className="navbar-search-bar-input"/>
+              <input
+                type="text"
+                placeholder="Search products..."
+                className="navbar-search-bar-input"
+              />
             </div>
             <ShoppingCart sx={stylesIcons} size="large" />
           </ul>

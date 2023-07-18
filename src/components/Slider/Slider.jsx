@@ -1,5 +1,5 @@
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import slider1 from "../../assets/images/slider1.png";
 import slider2 from "../../assets/images/slider2.png";
 import slider3 from "../../assets/images/slider3.png";
@@ -14,6 +14,16 @@ const Slider = () => {
   const nextSlide = () => {
     setCurrentSlider(currentSlider === 2 ? 0 : (prev) => prev + 1)
   }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCurrentSlider((prev) => (prev === 2 ? 0 : prev + 1));
+    }, 5000);
+  
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [currentSlider]);
 
   const stylesIcons = {
     border: "1px solid #34435C64",
