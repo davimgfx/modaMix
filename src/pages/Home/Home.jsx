@@ -1,8 +1,13 @@
 import React from "react";
 import { FeaturedProducts, Slider, Categories } from "../../components";
+import useFetch from "../../hooks/useFetch"
+import { imageListClasses } from "@mui/material";
 const Home = () => {
+  let {loading, data, error} = useFetch("http://localhost:1337/api/categories?populate=*")
+
   return (
     <section id="home" className="home">
+    
       <Slider />
       <FeaturedProducts
         type="Featured"

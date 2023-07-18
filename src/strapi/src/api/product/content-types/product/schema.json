@@ -4,12 +4,21 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Products",
-    "description": ""
+    "displayName": "Products"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "teste": {
+      "type": "json"
+    }
+  }
 }

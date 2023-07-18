@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { List } from "../../components";
 import "./Products.scss";
 const Products = () => {
-  const categoryId = parseInt(useParams().id);
+  const { categoryId } = useParams()
+  const id = parseInt(categoryId)
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState(null);
 
