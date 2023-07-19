@@ -6,7 +6,6 @@ const CAROUSEL_DATA = [
         id: 999,
         name: 'Woman',
         imageUrl: 'https://i.ibb.co/6n53fHb/slider1.jpg',
-        price: 25,
       },
       {
         id: 998,

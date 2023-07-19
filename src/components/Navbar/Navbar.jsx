@@ -31,16 +31,16 @@ const Navbar = () => {
           </div>
 
           <div className="navbar-links">
-            <Link to="/products/1" className="link">
+            <Link to="/products/women" className="link">
               <p>Women</p>
             </Link>
-            <Link to="/products/2" className="link">
-              <p>Mens</p>
+            <Link to="/products/men" className="link">
+              <p>Men</p>
             </Link>
-            <Link to="/products/3" className="link">
+            <Link to="/products/children" className="link">
               <p>Children</p>
             </Link>
-            <Link to="/products/4" className="link">
+            <Link to="/products/accessories" className="link">
               <p>Accessories</p>
             </Link>
             <div
@@ -52,7 +52,9 @@ const Navbar = () => {
               </div>
 
               <div className={` ${isOpenModal ? "navbar-link-modal" : "none"}`}>
-                <p>HomePage</p>
+                <Link to="../../" className="link">
+                  <p>HomePage</p>
+                </Link>
                 <p>About</p>
                 <p>Contact</p>
                 <p>Stores</p>

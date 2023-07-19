@@ -1,25 +1,38 @@
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
-import React, {useState, useEffect} from "react";
-import slider1 from "../../assets/images/slider1.png";
-import slider2 from "../../assets/images/slider2.png";
-import slider3 from "../../assets/images/slider3.png";
+import React, { useEffect, useState } from "react";
+import { getCategoriesAndDocumentsCarousel } from "../../utils/firebase/firebase";
 import "./Slider.scss";
 const Slider = () => {
-  const [currentSlider, setCurrentSlider] = useState(0)
+  const [currentSlider, setCurrentSlider] = useState(0);
+  const [carouselData, setCarouselData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const prevSlide = () =>{
-    setCurrentSlider(currentSlider === 0 ? 2 : (prev) => prev - 1)
-  }
+  // Get the Products from the Firebase
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const carouselMap = await getCategoriesAndDocumentsCarousel();
+      setCarouselData(carouselMap.Carousel);
+      console.log(carouselData);
+     
+      setLoading(true);
+    };
+
+    getCategoriesMap();
+  }, []);
+
+  const prevSlide = () => {
+    setCurrentSlider(currentSlider === 0 ? 2 : (prev) => prev - 1);
+  };
 
   const nextSlide = () => {
-    setCurrentSlider(currentSlider === 2 ? 0 : (prev) => prev + 1)
-  }
+    setCurrentSlider(currentSlider === 2 ? 0 : (prev) => prev + 1);
+  };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setCurrentSlider((prev) => (prev === 2 ? 0 : prev + 1));
     }, 5000);
-  
+
     return () => {
       clearTimeout(timeout);
     };
@@ -36,17 +49,20 @@ const Slider = () => {
   };
   return (
     <div className="slider">
-      <div className="container" style={{transform: `translateX(-${currentSlider * 100}vw)`}}>
-        <img src={slider1} alt="image_slider" />
-        <img src={slider2} alt="image_slider" />
-        <img src={slider3} alt="image_slider" />
+      <div
+        className="container"
+        style={{ transform: `translateX(-${currentSlider * 100}vw)` }}>
+        {carouselData &&
+          carouselData.map((img) => (
+            <img src={img.imageUrl} alt="image_slider" key={img.id} />
+          ))}
       </div>
       <div className="icons">
         <div className="icon-left">
-          <ArrowBackIosNew sx={stylesIcons} onClick={prevSlide}/>
+          <ArrowBackIosNew sx={stylesIcons} onClick={prevSlide} />
         </div>
         <div className="icon-right">
-          <ArrowForwardIos sx={stylesIcons} onClick={nextSlide}/>
+          <ArrowForwardIos sx={stylesIcons} onClick={nextSlide} />
         </div>
       </div>
     </div>

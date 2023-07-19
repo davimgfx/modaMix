@@ -3,29 +3,14 @@ import { useParams } from "react-router-dom";
 import { List } from "../../components";
 import "./Products.scss";
 const Products = () => {
-  const { categoryId } = useParams()
-  const id = parseInt(categoryId)
+  const { categoryId } = useParams();
+  const id = parseInt(categoryId);
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState(null);
 
   return (
     <section id="products" className="products">
       <div className="products-categories-options">
-        <div className="filterItem">
-          <h2>Product Categories</h2>
-          <div className="inputItem">
-            <input type="checkbox" id="1" value={1} />
-            <label htmlFor="1"> Skirts</label>
-          </div>
-          <div className="inputItem">
-            <input type="checkbox" id="2" value={3} />
-            <label htmlFor="2"> Hats</label>
-          </div>
-          <div className="inputItem">
-            <input type="checkbox" id="3" value={3} />
-            <label htmlFor="3"> Shoes</label>
-          </div>
-        </div>
         <div className="filterItem filterItem-by-price">
           <h2>Filter by price</h2>
           <div className="inputItem">

@@ -1,7 +1,17 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Categories, FeaturedProducts, Slider } from "../../components";
+import PRODUCT_DATA  from "../../utils/data/Products" 
+import { addCollectionAndDocuments } from "../../utils/firebase/firebase"
 
 const Home = () => {
+  // add the products
+  // useEffect(() => {
+  //   addCollectionAndDocuments("products", PRODUCT_DATA)
+  // }, [])
+
+   //Render the products
+  
+
   return (
     <section id="home" className="home">
       <Slider />
