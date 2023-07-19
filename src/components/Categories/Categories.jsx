@@ -1,32 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getCategoriesAndDocumentsCategory } from "../../utils/firebase/firebase";
 import "./Categories.scss";
 const Categories = () => {
+  const [categoryData, setCategoryData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [imageArray, setImageArray] = useState([]);
+
+  // Get the Category from the Firebase
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocumentsCategory();
+      setCategoryData(categoryMap.Category);
+
+      setLoading(true);
+    };
+
+    getCategoriesMap();
+  }, []);
+
+  useEffect(() => {
+    const generateImageArray = () => {
+      const newArray = categoryData.map((category) => ({
+        name: category.name,
+        imageUrl: category.imageUrl
+      }));
+      setImageArray(newArray);
+    };
+
+    generateImageArray();
+  }, [categoryData]);
+
+  console.log(imageArray[0])
+
+  console.log(categoryData.map((img) => console.log(img.imageUrl)));
   return (
     <section className="categories">
       <div className="col">
         <div className="row">
           <img
-            src="https://images.pexels.com/photos/818992/pexels-photo-818992.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
+            src={imageArray[0]?.imageUrl}
+            alt="woman_photo"
           />
-          <button>Sale</button>
+          <button>{imageArray[0]?.name}</button>
         </div>
         <div className="row">
           <img
-            src="https://images.pexels.com/photos/2036646/pexels-photo-2036646.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
+            src={imageArray[1]?.imageUrl}
+            alt="woman_photo"
           />
-          <button>Women</button>
+          <button>{imageArray[1]?.name}</button>
         </div>
       </div>
       <div className="col">
         <div className="row">
           {" "}
           <img
-            src="https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
+            src={imageArray[2]?.imageUrl}
+            alt="man_photo"
           />
-          <button>New Season</button>
+          <button>{imageArray[2]?.name}</button>
         </div>
       </div>
       <div className="col col-l">
@@ -34,28 +66,28 @@ const Categories = () => {
           <div className="col">
             <div className="row">
               <img
-                src="https://images.pexels.com/photos/1192609/pexels-photo-1192609.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
+                src={imageArray[3]?.imageUrl}
+                alt="man_photo"
               />
-              <button>Men</button>
+              <button>{imageArray[3]?.name}</button>
             </div>
           </div>
           <div className="col">
             <div className="row">
               <img
-                src="https://images.pexels.com/photos/2703202/pexels-photo-2703202.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
+                src={imageArray[4]?.imageUrl}
+                alt="accessories_photo"
               />
-              <button>Accessories</button>
+              <button>{imageArray[4]?.name}</button>
             </div>
           </div>
         </div>
         <div className="row">
           <img
-            src="https://images.pexels.com/photos/1159670/pexels-photo-1159670.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt=""
+            src={imageArray[5]?.imageUrl}
+            alt="children_photo"
           />
-          <button>Shoes</button>
+          <button>{imageArray[5]?.name}</button>
         </div>
       </div>
     </section>

@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import { Categories, FeaturedProducts, Slider } from "../../components";
 import PRODUCT_DATA  from "../../utils/data/Products" 
 import { addCollectionAndDocuments } from "../../utils/firebase/firebase"
+import { ProductsContext } from "../../context/Products";
 
 const Home = () => {
   // add the products
@@ -10,7 +11,8 @@ const Home = () => {
   // }, [])
 
    //Render the products
-  
+   const { productsMap } = useContext(ProductsContext);
+
 
   return (
     <section id="home" className="home">

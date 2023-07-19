@@ -39,9 +39,40 @@ export const addCollectionAndDocuments = async (
   console.log("done");
 };
 
-//get the products from the firebase database
+//get the imgs to Carousel from the firebase database
 export const getCategoriesAndDocumentsCarousel = async () => {
   const collectionRef = collection(db, "carousel");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title] = items;
+    return acc;
+  }, []);
+
+  return categoryMap;
+};
+
+
+//get the products from the firebase database
+export const getCategoriesAndDocumentsProducts = async () => {
+  const collectionRef = collection(db, "products");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { category, items } = docSnapshot.data();
+    acc[category] = items;
+    return acc;
+  }, []);
+
+  return categoryMap;
+};
+
+//get the category products from the firebase database
+export const getCategoriesAndDocumentsCategory = async () => {
+  const collectionRef = collection(db, "category");
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);

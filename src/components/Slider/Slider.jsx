@@ -1,6 +1,7 @@
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { getCategoriesAndDocumentsCarousel } from "../../utils/firebase/firebase";
+import { Link } from "react-router-dom"
 import "./Slider.scss";
 const Slider = () => {
   const [currentSlider, setCurrentSlider] = useState(0);
@@ -12,8 +13,7 @@ const Slider = () => {
     const getCategoriesMap = async () => {
       const carouselMap = await getCategoriesAndDocumentsCarousel();
       setCarouselData(carouselMap.Carousel);
-      console.log(carouselData);
-     
+      console.log(carouselData)
       setLoading(true);
     };
 
@@ -54,7 +54,9 @@ const Slider = () => {
         style={{ transform: `translateX(-${currentSlider * 100}vw)` }}>
         {carouselData &&
           carouselData.map((img) => (
-            <img src={img.imageUrl} alt="image_slider" key={img.id} />
+            <Link to ={`/products/${img.name.toLowerCase()}`}>
+              <img src={img.imageUrl} alt="image_slider" key={img.id} />
+            </Link>
           ))}
       </div>
       <div className="icons">
