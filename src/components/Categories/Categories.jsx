@@ -1,97 +1,45 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getCategoriesAndDocumentsCategory } from "../../utils/firebase/firebase";
 import "./Categories.scss";
+
 const Categories = () => {
   const [categoryData, setCategoryData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [imageArray, setImageArray] = useState([]);
 
-  // Get the Category from the Firebase
   useEffect(() => {
-    const getCategoriesMap = async () => {
+    const fetchData = async () => {
       const categoryMap = await getCategoriesAndDocumentsCategory();
       setCategoryData(categoryMap.Category);
-
       setLoading(true);
     };
 
-    getCategoriesMap();
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    const generateImageArray = () => {
-      const newArray = categoryData.map((category) => ({
-        name: category.name,
-        imageUrl: category.imageUrl
-      }));
-      setImageArray(newArray);
-    };
-
-    generateImageArray();
-  }, [categoryData]);
-
-  console.log(imageArray[0])
-
-  console.log(categoryData.map((img) => console.log(img.imageUrl)));
-  return (
-    <section className="categories">
-      <div className="col">
-        <div className="row">
-          <img
-            src={imageArray[0]?.imageUrl}
-            alt="woman_photo"
-          />
-          <button>{imageArray[0]?.name}</button>
-        </div>
-        <div className="row">
-          <img
-            src={imageArray[1]?.imageUrl}
-            alt="woman_photo"
-          />
-          <button>{imageArray[1]?.name}</button>
-        </div>
-      </div>
-      <div className="col">
-        <div className="row">
-          {" "}
-          <img
-            src={imageArray[2]?.imageUrl}
-            alt="man_photo"
-          />
-          <button>{imageArray[2]?.name}</button>
-        </div>
-      </div>
-      <div className="col col-l">
-        <div className="row">
-          <div className="col">
-            <div className="row">
-              <img
-                src={imageArray[3]?.imageUrl}
-                alt="man_photo"
-              />
-              <button>{imageArray[3]?.name}</button>
-            </div>
-          </div>
-          <div className="col">
-            <div className="row">
-              <img
-                src={imageArray[4]?.imageUrl}
-                alt="accessories_photo"
-              />
-              <button>{imageArray[4]?.name}</button>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <img
-            src={imageArray[5]?.imageUrl}
-            alt="children_photo"
-          />
-          <button>{imageArray[5]?.name}</button>
-        </div>
-      </div>
-    </section>
+  const renderCategoryLink = (category, index) => (
+    <Link className="row" to={`products/${category?.name.toLowerCase()}`} key={index}>
+      <img src={category?.imageUrl} alt={category?.name} />
+      <button>{category?.name}</button>
+    </Link>
   );
+
+  const renderCategoriesColumns = () => {
+    const columns = [[0, 1], [2], [3, 4], [5]];
+
+    return columns.map((col, colIndex) => (
+      <div className={`col${colIndex === 2 ? " col-l" : ""}`} key={colIndex}>
+        {col.map((index) => renderCategoryLink(imageArray[index], index))}
+      </div>
+    ));
+  };
+
+  const imageArray = categoryData.map((category) => ({
+    name: category.name,
+    imageUrl: category.imageUrl,
+  }));
+
+  return <section className="categories">{renderCategoriesColumns()}</section>;
 };
 
 export default Categories;
