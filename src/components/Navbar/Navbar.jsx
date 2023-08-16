@@ -3,14 +3,16 @@ import {
   KeyboardArrowDown,
   Search,
   ShoppingCart,
+  AccountCircle
 } from "@mui/icons-material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import "./Navbar.scss";
+import Login from "../Login/Login"
 const Navbar = () => {
-  const [isOpenModal, setIsOpenModal] = useState(true);
-
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenLogin, setIsOpenLogin] = useState(false);
   const stylesIcons = {
     border: "1px solid #34435C64",
     padding: "0.5rem",
@@ -69,6 +71,7 @@ const Navbar = () => {
         {/* right side navbar */}
         <div>
           <ul className="navbar-icons-right">
+            <  AccountCircle sx={stylesIcons} size="large" />
             <Favorite sx={stylesIcons} size="large" />
             <div className="navbar-search-bar">
               <Search size="large" />
@@ -82,6 +85,9 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
+
+      {/* Login */}
+      <Login />
     </header>
   );
 };
