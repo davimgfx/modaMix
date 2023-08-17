@@ -1,5 +1,5 @@
 import { Navbar, Footer } from "./components";
-import { Home, Product, Products } from "./pages";
+import { Home, Product, Products, CreateAccount } from "./pages";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import "./index.css"
 
@@ -30,6 +30,10 @@ const router = createBrowserRouter([
         path: "/product/:id/",
         element: <Product />,
       },
+      {
+        path: "createAccount",
+        element: <CreateAccount />,
+      }
     ],
   },
 ]);

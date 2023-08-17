@@ -4,7 +4,7 @@
   justify-content: center;
 
   .login-container {
-    position: absolute;
+    position: fixed;
     background: white;
     z-index: 999;
     top: 13%;
@@ -13,6 +13,17 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 
+    .login-header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .login-div {
+      p {
+        font-size: 1.6rem;
+        font-weight: 300;
+      }
+    }
     .bars {
       height: 0.2rem;
       width: auto;
@@ -24,7 +35,7 @@
     .form-login {
       display: flex;
       flex-direction: column;
-      gap:rem;
+      gap: rem;
       .label-form {
         display: flex;
         flex-direction: column;
@@ -36,6 +47,34 @@
         margin: 0.2rem 0 1.4rem 0;
         text-indent: 0.2rem;
         border-radius: 1.5rem;
+      }
+    }
+    .form-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      .button{
+        border: 2px solid #ffcc66;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: black;
+      }
+
+      .button-submit {
+       
+      }
+      .google_image{
+        width: 1.5rem;
+      }
+      .button-google{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        color: black;
       }
     }
   }

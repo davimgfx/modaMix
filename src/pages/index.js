@@ -1,4 +1,5 @@
 import Home from "./Home/Home"
 import Product from "./Product/Product"
 import Products from "./Products/Products"
-export { Home, Product, Products } 
+import CreateAccount from "./CreateAccount/CreateAccount"
+export { Home, Product, Products, CreateAccount } 
